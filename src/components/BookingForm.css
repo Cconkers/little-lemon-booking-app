@@ -121,6 +121,9 @@
   border-radius: var(--border-radius);
   margin: 1.5rem 0;
   text-align: left;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .booking-details p {
@@ -164,23 +167,23 @@
   .booking-section {
     padding: 3rem 0;
   }
-  
+
   .booking-title {
     font-size: 2rem;
   }
-  
+
   .booking-form {
     padding: 1.5rem;
   }
-  
+
   .form-row {
     grid-template-columns: 1fr;
   }
-  
+
   .booking-success {
     padding: 2rem 1.5rem;
   }
-  
+
   .booking-success h2 {
     font-size: 1.5rem;
   }
@@ -190,13 +193,13 @@
   .booking-form {
     padding: 1rem;
   }
-  
+
   .form-input,
   .form-textarea {
     padding: 10px 12px;
     font-size: 14px;
   }
-  
+
   .submit-btn {
     padding: 14px;
     font-size: 1rem;
@@ -220,4 +223,4 @@
 .form-label:has(+ .form-input[aria-required="true"])::after {
   content: " *";
   color: var(--error-color);
-} 
+}

@@ -3,7 +3,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer" role="contentinfo">
+    <footer id="contact" className="footer" role="contentinfo">
       <div className="footer-content">
         <div className="footer-section">
           <h4>Little Lemon</h4>
@@ -13,7 +13,7 @@ const Footer = () => {
           <h4>Contacto</h4>
           <p>📍 Calle Mayor 123, Madrid</p>
           <p>📞 +34 91 123 45 67</p>
-          <p>✉️ info@littlelemon.es</p>
+          <p>✉️ <a href="mailto:info@littlelemon.es" className="footer-email">info@littlelemon.es</a></p>
         </div>
         <div className="footer-section">
           <h4>Horarios</h4>

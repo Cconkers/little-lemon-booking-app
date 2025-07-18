@@ -6,21 +6,33 @@ describe('App', () => {
   test('renders all main components', () => {
     render(<App />);
     
-    // Check for Header
-    expect(screen.getByRole('banner')).toBeInTheDocument();
-    expect(screen.getByText('Little Lemon')).toBeInTheDocument();
+    // Check for Header and Hero sections (both have role="banner")
+    const banners = screen.getAllByRole('banner');
+    expect(banners).toHaveLength(2);
+    
+    // Check for specific Little Lemon instances
+    expect(screen.getByRole('heading', { level: 1, name: /little lemon/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /little lemon/i })).toBeInTheDocument();
     
     // Check for Hero section
     expect(screen.getByText('Madrid')).toBeInTheDocument();
     expect(screen.getByText(/somos un restaurante familiar mediterráneo/i)).toBeInTheDocument();
     
+    // Check for Menu section
+    expect(screen.getByText('Nuestro Menú')).toBeInTheDocument();
+    
     // Check for Booking form
-    expect(screen.getByText('Reservar Mesa')).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: /reservar mesa/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/nombre completo/i)).toBeInTheDocument();
     
-    // Check for Footer
-    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
-    expect(screen.getByText('Contacto')).toBeInTheDocument();
+    // Check for Footer with contact ID
+    const footer = screen.getByRole('contentinfo');
+    expect(footer).toBeInTheDocument();
+    expect(footer).toHaveAttribute('id', 'contact');
+    
+    // Check for specific footer heading
+    const footerHeading = screen.getByRole('heading', { level: 4, name: /contacto/i });
+    expect(footerHeading).toBeInTheDocument();
   });
 
   test('has proper semantic HTML structure', () => {
@@ -42,8 +54,18 @@ describe('App', () => {
     // Check navigation links are present
     expect(screen.getByRole('menuitem', { name: /inicio/i })).toHaveAttribute('href', '#home');
     expect(screen.getByRole('menuitem', { name: /reservar/i })).toHaveAttribute('href', '#booking');
+    expect(screen.getByRole('menuitem', { name: /contacto/i })).toHaveAttribute('href', '#contact');
     
     // Check hero button links to booking section
-    expect(screen.getByRole('button', { name: /reservar mesa/i })).toHaveAttribute('href', '#booking');
+    expect(screen.getByRole('button', { name: /ir a la sección de reservas/i })).toHaveAttribute('href', '#booking');
+  });
+
+  test('footer email is clickeable with mailto', () => {
+    render(<App />);
+    
+    // Check that email link exists and has mailto
+    const emailLink = screen.getByRole('link', { name: /info@littlelemon.es/i });
+    expect(emailLink).toBeInTheDocument();
+    expect(emailLink).toHaveAttribute('href', 'mailto:info@littlelemon.es');
   });
 });

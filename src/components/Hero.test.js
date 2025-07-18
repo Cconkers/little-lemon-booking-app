@@ -16,7 +16,7 @@ describe('Hero', () => {
 
   test('renders call-to-action button', () => {
     render(<Hero />);
-    const reserveButton = screen.getByRole('button', { name: /reservar mesa/i });
+    const reserveButton = screen.getByRole('button', { name: /ir a la sección de reservas/i });
     expect(reserveButton).toBeInTheDocument();
     expect(reserveButton).toHaveAttribute('href', '#booking');
   });
@@ -30,9 +30,11 @@ describe('Hero', () => {
 
   test('has proper accessibility attributes', () => {
     render(<Hero />);
-    expect(screen.getByRole('banner')).toBeInTheDocument();
+    const heroSection = screen.getByRole('banner');
+    expect(heroSection).toBeInTheDocument();
+    expect(heroSection).toHaveClass('hero');
     
-    const reserveButton = screen.getByRole('button', { name: /reservar mesa/i });
+    const reserveButton = screen.getByRole('button', { name: /ir a la sección de reservas/i });
     expect(reserveButton).toHaveAttribute('aria-label', 'Ir a la sección de reservas');
   });
 

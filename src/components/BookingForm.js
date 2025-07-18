@@ -46,8 +46,8 @@ const BookingForm = () => {
     // Validar nombre
     if (!formData.name.trim()) {
       newErrors.name = "El nombre es obligatorio";
-    } else if (formData.name.trim().length < 2) {
-      newErrors.name = "El nombre debe tener al menos 2 caracteres";
+    } else if (formData.name.trim().length < 3) {
+      newErrors.name = "El nombre debe tener al menos 3 caracteres";
     }
 
     // Validar email
@@ -115,7 +115,6 @@ const BookingForm = () => {
     if (validateForm()) {
       setIsSubmitted(true);
       console.log("Datos de la reserva:", formData);
-      // Aquí normalmente enviarías los datos a un servidor
     }
   };
 
@@ -171,10 +170,10 @@ const BookingForm = () => {
     <section id="booking" className="booking-section">
       <div className="booking-container">
         <h2 className="booking-title">Reservar Mesa</h2>
-        <form className="booking-form" onSubmit={handleSubmit} noValidate>
+        <form className="booking-form" onSubmit={handleSubmit} noValidate role="form">
           <div className="form-group">
             <label htmlFor="name" className="form-label">
-              Nombre Completo *
+              Nombre Completo
             </label>
             <input
               type="text"
@@ -196,7 +195,7 @@ const BookingForm = () => {
 
           <div className="form-group">
             <label htmlFor="email" className="form-label">
-              Email *
+              Email
             </label>
             <input
               type="email"
@@ -218,7 +217,7 @@ const BookingForm = () => {
 
           <div className="form-group">
             <label htmlFor="phone" className="form-label">
-              Teléfono *
+              Teléfono
             </label>
             <input
               type="tel"
@@ -241,7 +240,7 @@ const BookingForm = () => {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="date" className="form-label">
-                Fecha *
+                Fecha
               </label>
               <input
                 type="date"
@@ -263,7 +262,7 @@ const BookingForm = () => {
 
             <div className="form-group">
               <label htmlFor="time" className="form-label">
-                Hora *
+                Hora
               </label>
               <select
                 id="time"
@@ -292,7 +291,7 @@ const BookingForm = () => {
           <div className="form-row">
             <div className="form-group">
               <label htmlFor="guests" className="form-label">
-                Número de Comensales *
+                Número de Comensales
               </label>
               <input
                 type="number"
